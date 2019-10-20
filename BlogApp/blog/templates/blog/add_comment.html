@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="create-blog">
+        <h2>Add Your comment here:</h2>
+        <form class="site-form" action="{% url 'blogs:add_comment' blog_uuid=blog.blog_uuid %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ add_comment_form }}
+            <input type="submit" value="Comment">
+        </form>
+    </div>
+
+{% endblock %}

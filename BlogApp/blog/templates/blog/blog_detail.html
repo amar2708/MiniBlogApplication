@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="blog-detail">
+    <div class="blog">
+        <h2>{{ blog.title }}</h2>
+        <h3>Written by {{ blog.user_id.username }}</h3>
+        <p>{{ blog.body }}</p>
+        <p>{{ blog.date }}</p>
+    </div><br/>
+    <p>Comments:</p>
+    <div>
+        {% for comment in comments %}
+            <p>{{ comment.comment }}</p>
+            <p>Commented By: {{ comment.commented_by }} on
+                {{ comment.commented_on }}</p><br/>
+        {% endfor %}
+        <p></p>
+    </div>
+    <a href="{% url 'blogs:add_comment' blog_uuid=blog.blog_uuid %}"><font color="#00dba0">Add Comment</font></a>
+</div>
+{% endblock %}
