@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&3%nr@awt3qn9a3=09+ch=6%h-tlctw^o@w!z3cz+teo7a@8d='
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'BlogApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': os.environ['DB_ENGINE'],
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
@@ -104,10 +104,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "BACKEND": os.environ['CACHE_BACKEND'],
+        "LOCATION": os.environ['CACHE_LOCATION'],
         "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CLIENT_CLASS": os.environ['CACHE_CLIENT'],
         }
     }
 }
